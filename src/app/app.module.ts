@@ -3,14 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TextListComponent } from './components/text-list/text-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { VocabularyComponent } from './components/vocabulary/vocabulary.component';
+import { FormsModule } from '@angular/forms';
+import { ViewerComponent } from './components/viewer/viewer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TextListComponent,
+    VocabularyComponent,
+    ViewerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

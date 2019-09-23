@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="word-row word-header">
+    <span>Слово</span>
+    <span>Частота</span>
+    <span>
+      <input type="search" placeholder="Поиск слова" />
+    </span>
+    <span>
+      <button (click)="setWords('word', true)">Сортировка по алфавиту</button>
+      <button (click)="setWords('frequency', true)">Сортировка по частоте</button>
+    </span>
+  </div>
+  <div class="word-row" *ngFor="let word of words;">
+    <span>{{word.word}}</span>
+    <span>{{word.frequency}}</span>
+    <span>Из текста номер {{word.frequency}}</span>
+  </div>
+
+  <div class="paging">
+    <button id="back" (click)="back()">Назад</button>
+    <input id="page" disabled>
+    <button id="forward" (click)="forward()">Вперед</button>
+  </div>
+</div>

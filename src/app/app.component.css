@@ -1,0 +1,26 @@
+.header {
+  width: 100%;
+  height: 40px;
+  background: #ccc;
+  border: rgba(151, 90, 90, 0.76);
+  display: flex;
+}
+.header a {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+}
+.header a:hover {
+  background: rgb(129, 129, 129);
+
+}
+.header a.active-link {
+  background: rgb(155, 153, 153);
+}
+.header a:hover.active-link {
+  background: rgb(78, 77, 77);
+}

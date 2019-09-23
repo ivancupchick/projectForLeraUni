@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  height: calc(100% - 40px);
+  padding: 10px;
+  background: #ccc;
+  border: 10px solid rgb(155, 153, 153);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.word-row {
+  background: #ccc;
+  border: 1px solid rgb(155, 153, 153);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  justify-content: flex-start;
+}
+
+.word-row span {
+  min-width: 20%;
+}
+
+.word-row + .word-row  {
+  margin-top: 3px;
+}
+
+.word-header {
+  border: 3px solid rgb(65, 65, 65);
+}

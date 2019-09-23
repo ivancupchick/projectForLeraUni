@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="text-row text-header">
+    <span>Название текста</span>
+    <span>ID</span>
+    <span>
+      <input (change)="fileEvent($event)" [(ngModel)] = "file" type="file" placeholder="Загрузить новый текст" />
+    </span>
+    <span>
+      <!-- <button></button> -->
+      <!-- <button (click)="setTexts('text', true)">Сортировка по алфавиту</button>
+      <button (click)="setTexts('frequency', true)">Сортировка по частоте</button> -->
+    </span>
+  </div>
+  <div class="text-row" *ngFor="let text of texts;">
+    <span>{{text.name}}</span>
+    <span>{{text.id}}</span>
+    <!-- <span>Из текста номер {{text.frequency}}</span> -->
+    <button>Редактировать</button>
+  </div>
+
+  <div class="paging">
+    <button id="back" (click)="back()">Назад</button>
+    <input id="page" disabled>
+    <button id="forward" (click)="forward()">Вперед</button>
+  </div>
+</div>
