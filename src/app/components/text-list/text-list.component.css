@@ -2,15 +2,15 @@
   width: 100%;
   height: calc(100% - 40px);
   padding: 10px;
-  background: #ccc;
-  border: 10px solid rgb(155, 153, 153);
+  background: rgb(239, 251, 228);
+  border: 10px solid rgb(212, 250, 177);
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .text-row {
-  background: #ccc;
-  border: 1px solid rgb(155, 153, 153);
+  background: rgb(239, 251, 228);
+  border: 1px solid rgb(212, 250, 177);
   padding: 5px;
   display: flex;
   align-items: center;
@@ -28,5 +28,5 @@
 }
 
 .text-header {
-  border: 3px solid rgb(65, 65, 65);
+  border: 3px solid rgb(255, 136, 136);
 }

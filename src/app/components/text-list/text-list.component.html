@@ -15,7 +15,8 @@
     <span>{{text.name}}</span>
     <span>{{text.id}}</span>
     <!-- <span>Из текста номер {{text.frequency}}</span> -->
-    <button>Редактировать</button>
+    <button (click)="setData(text.data)">Редактировать</button>
+    <!-- <a>Редактировать</a> -->
   </div>
 
   <div class="paging">

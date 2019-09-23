@@ -3,7 +3,8 @@
     <span>Слово</span>
     <span>Частота</span>
     <span>
-      <input type="search" placeholder="Поиск слова" />
+      <input [(ngModel)]="searchValue" type="search" placeholder="Поиск слова" />
+      <button (click)="searchWord()">Поиск</button>
     </span>
     <span>
       <button (click)="setWords('word', true)">Сортировка по алфавиту</button>
@@ -13,7 +14,7 @@
   <div class="word-row" *ngFor="let word of words;">
     <span>{{word.word}}</span>
     <span>{{word.frequency}}</span>
-    <span>Из текста номер {{word.frequency}}</span>
+    <!-- <span>Из текста номер {{word.frequency}}</span> -->
   </div>
 
   <div class="paging">

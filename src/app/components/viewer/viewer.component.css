@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  height: calc(100% - 40px);
+  padding: 10px;
+  background: rgb(239, 251, 228);
+  border: 10px solid rgb(212, 250, 177);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.container textarea {
+  width: 100%;
+  height: calc(100% - 40px);
+  resize: none;
+  box-sizing: border-box;
+}
+
+.buttons {
+  height: 40px;
+  display: flex;
+}
+
+.buttons button {
+  height: 100%;
+  width: 50%;
+}

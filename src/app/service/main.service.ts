@@ -84,44 +84,39 @@ export class MainService {
   getWords(page: number, sortBy: 'word' | 'frequency' = 'word', sortOrder: boolean, totalRecords: number = 20) {
     const url = `${this.baseUrl}/vocabulary?page=${page}&size=${totalRecords}&sort=${sortBy},${sortOrder ? 'asc' : 'desc'}`;
 
-    console.log(url);
-    // this.http.request(new HttpRequest<any>('GET', url)).subscribe((res) => {
-    //   // if (res)
-    //   console.log(res);
-    // });
     return this.http.get(url)
       .pipe(
         take(1)
       );
   }
 
-  getTexts(page: number, totalRecords: number = 2) {
+  getTexts(page: number, totalRecords: number = 20) {
     const url = `${this.baseUrl}/text?page=${page}&size=${totalRecords}`;
 
-    console.log(url);
-    // this.http.request(new HttpRequest<any>('GET', url)).subscribe((res) => {
-    //   // if (res)
-    //   console.log(res);
-    // });
     return this.http.get(url)
       .pipe(
         take(1)
       );
   }
 
-  uploadFile(files: File): Observable<any> {
+  searchWord(word: string) {
+    const url = `${this.baseUrl}/vocabulary/${word}`;
+
+    // 'https://valerija-nlp.herokuapp.com/vocabulary/english/?page=0&size=2&sort=frequency,desc'
+
+    return this.http.get(url)
+      .pipe(
+        take(1)
+      );
+  }
+
+  uploadFile(file: File): Observable<any> {
     const url = `${this.baseUrl}/text`;
 
-    const HttpUploadOptions = {
-      headers: new HttpHeaders({ "Content-Type": "" }),
-      withCredentials: false
-    };
+    const formData = new FormData();
+    formData.append('file', file);
 
-    // const body = {
-    //   file: files
-    // };
-
-    return this.http.post(url, files, HttpUploadOptions)
+    return this.http.post(url, formData)
       .pipe(
         take(1)
       );

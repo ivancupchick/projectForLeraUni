@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { MainService, VocabularyResponse, WordResponse } from 'src/app/service/main.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -9,7 +10,7 @@ import { MainService, VocabularyResponse, WordResponse } from 'src/app/service/m
   templateUrl: './vocabulary.component.html',
   styleUrls: ['./vocabulary.component.css']
 })
-export class VocabularyComponent implements OnInit {
+export class VocabularyComponent implements OnInit, OnDestroy {
   public words: WordResponse[];
 
   sortOrder = true;
@@ -20,24 +21,27 @@ export class VocabularyComponent implements OnInit {
 
   maxPage = 10;
 
+  searchValue: string;
+
+  getWords$: Subscription;
+
   constructor(private service: MainService) { }
 
   ngOnInit() {
-    // const options = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     // 'Access-Control-Allow-Origin':  'http://localhost:4200',
-    //     // 'Access-Control-Max-Age': '86400'
-    //   }),
-    //   // responseType: 'json',
-    //   // withCredentials: true,
-
-    // };
-
     this.setWords();
   }
 
+  ngOnDestroy() {
+    if (this.getWords$) {
+      this.getWords$.unsubscribe();
+    }
+  }
+
   setWords(sortBy: 'word' | 'frequency' = (this.previosSortBy || 'word'), change: boolean = false) {
+    if (this.getWords$) {
+      this.getWords$.unsubscribe();
+    }
+
     if (change) {
       this.sortOrder = !this.sortOrder;
     }
@@ -47,7 +51,7 @@ export class VocabularyComponent implements OnInit {
 
     input.value = (this.currentPage + 1);
 
-    this.service.getWords(this.currentPage, sortBy, this.sortOrder)
+    this.getWords$ = this.service.getWords(this.currentPage, sortBy, this.sortOrder)
       .subscribe((res: VocabularyResponse) => {
         this.words = res.content;
 
@@ -71,5 +75,14 @@ export class VocabularyComponent implements OnInit {
     } else {
       alert('Это первая страница');
     }
+  }
+
+  searchWord() {
+    this.service.searchWord(this.searchValue)
+      .subscribe((res: VocabularyResponse) => {
+        this.words = res.content;
+
+        this.maxPage = res.totalPages;
+      });
   }
 }

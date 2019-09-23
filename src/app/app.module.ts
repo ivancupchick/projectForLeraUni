@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { VocabularyComponent } from './components/vocabulary/vocabulary.component';
 import { FormsModule } from '@angular/forms';
 import { ViewerComponent } from './components/viewer/viewer.component';
+import { ViewerService } from './service/viewer.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { ViewerComponent } from './components/viewer/viewer.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ViewerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

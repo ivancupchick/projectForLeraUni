@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TextListComponent } from './components/text-list/text-list.component';
 import { VocabularyComponent } from './components/vocabulary/vocabulary.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'text-list', pathMatch: 'full' },
   { path: 'text-list', component: TextListComponent },
   { path: 'vocabulary', component: VocabularyComponent },
-  // { path: 'quastion', component: CreatequastionComponent, canActivate: [AuthGuard] },
+  { path: 'viewer', component: ViewerComponent },
   // { path: 'quastion/:id', component: QuastionComponent },
   // { path: 'editquastion/:id', component: EditQuestionComponent },
 ];
