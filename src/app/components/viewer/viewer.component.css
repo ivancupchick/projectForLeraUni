@@ -1,9 +1,8 @@
 .container {
   width: 100%;
-  height: calc(100% - 40px);
+  height: calc(100% - 50px);
   padding: 10px;
-  background: rgb(239, 251, 228);
-  border: 10px solid rgb(212, 250, 177);
+  border: 10px solid #5c8d89;
   box-sizing: border-box;
   overflow: hidden;
 }

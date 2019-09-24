@@ -1,26 +1,30 @@
 .header {
   width: 100%;
-  height: 40px;
-  background: rgb(239, 251, 228);
-  border: rgba(151, 90, 90, 0.76);
+  height: 50px;
+  background: #a7d7c5;
+  border: #5c8d89;
   display: flex;
 }
 .header a {
   width: 50%;
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  font-size: 30px;
+  padding: 0 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: black;
+  color: #2a4d49;
 }
 .header a:hover {
-  background: rgb(182, 253, 116);
-
+  background: #5c8d89;
 }
 .header a.active-link {
-  background: rgb(212, 250, 177);
+  background: #74b49b;
 }
 .header a:hover.active-link {
-  background: rgb(163, 255, 76);
+  background: #5c8d89;
 }

@@ -6,6 +6,10 @@ html {
 body {
   margin: 0;
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  background: rgba(249, 248, 235, 0.61);
+  font-size: 1.1rem;
 }
 
 .container {
@@ -23,7 +27,7 @@ body {
   align-items: center;
   height: 40px;
   z-index: 2;
-  background: rgb(212, 250, 177);
+  background: #5c8d89;
 }
 
 .paging input {

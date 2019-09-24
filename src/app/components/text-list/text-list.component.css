@@ -1,20 +1,17 @@
 .container {
   width: 100%;
-  height: calc(100% - 40px);
+  height: calc(100% - 50px);
   padding: 10px;
-  background: rgb(239, 251, 228);
-  border: 10px solid rgb(212, 250, 177);
+  border: 10px solid #5c8d89;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .text-row {
-  background: rgb(239, 251, 228);
-  border: 1px solid rgb(212, 250, 177);
-  padding: 5px;
+  border: 1px solid #5c8d89;
+  padding: 7px;
   display: flex;
   align-items: center;
-  font-size: 1rem;
   justify-content: flex-start;
 }
 
@@ -28,5 +25,5 @@
 }
 
 .text-header {
-  border: 3px solid rgb(255, 136, 136);
+  border: 3px solid #5c8d89;
 }

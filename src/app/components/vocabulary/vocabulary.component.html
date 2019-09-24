@@ -1,25 +1,29 @@
 <div class="container">
   <div class="word-row word-header">
-    <span>Слово</span>
-    <span>Частота</span>
+    <span>Word</span>
+    <span>Frequency</span>
     <span>
-      <input [(ngModel)]="searchValue" type="search" placeholder="Поиск слова" />
-      <button (click)="searchWord()">Поиск</button>
+      <input [(ngModel)]="searchValue" type="search" placeholder="Search a word" />
+      <button (click)="searchWord()">Search</button>
     </span>
     <span>
-      <button (click)="setWords('word', true)">Сортировка по алфавиту</button>
-      <button (click)="setWords('frequency', true)">Сортировка по частоте</button>
+      <button (click)="setWords('word', true)">Sort by word</button>
+      <button (click)="setWords('frequency', true)">Sort by frequency</button>
     </span>
   </div>
   <div class="word-row" *ngFor="let word of words;">
     <span>{{word.word}}</span>
     <span>{{word.frequency}}</span>
-    <span>Был применен в текстах:  <span *ngFor="let mention of word.mentions">{{mention.name}}</span></span>
+    <span>Found in:
+      <select>
+        <option *ngFor="let mention of word.mentions" value="{{mention.name}}">{{mention.name}}</option>
+      </select>
+    </span>
   </div>
 
   <div class="paging">
-    <button id="back" (click)="back()">Назад</button>
+    <button id="back" (click)="back()">Back</button>
     <input id="page" disabled>
-    <button id="forward" (click)="forward()">Вперед</button>
+    <button id="forward" (click)="forward()">Next</button>
   </div>
 </div>

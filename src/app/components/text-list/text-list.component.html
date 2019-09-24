@@ -1,9 +1,9 @@
 <div class="container">
   <div class="text-row text-header">
-    <span>Название текста</span>
-    <span>ID</span>
+    <span>Text Title</span>
+    <span *ngIf=false>ID</span>
     <span>
-      <input (change)="fileEvent($event)" [(ngModel)] = "file" type="file" placeholder="Загрузить новый текст" />
+      <input (change)="fileEvent($event)" [(ngModel)] = "file" type="file" placeholder="Load new text" />
     </span>
     <span>
       <!-- <button></button> -->
@@ -13,15 +13,15 @@
   </div>
   <div class="text-row" *ngFor="let text of texts;">
     <span>{{text.name}}</span>
-    <span>{{text.id}}</span>
+    <span *ngIf=false>{{text.id}}</span>
     <!-- <span>Из текста номер {{text.frequency}}</span> -->
-    <button (click)="setData(text.data)">Редактировать</button>
+    <button (click)="setData(text.data)">Edit</button>
     <!-- <a>Редактировать</a> -->
   </div>
 
   <div class="paging">
-    <button id="back" (click)="back()">Назад</button>
+    <button id="back" (click)="back()">Back</button>
     <input id="page" disabled>
-    <button id="forward" (click)="forward()">Вперед</button>
+    <button id="forward" (click)="forward()">Next</button>
   </div>
 </div>
