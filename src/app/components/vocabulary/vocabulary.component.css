@@ -16,10 +16,30 @@
   align-items: center;
   font-size: 1rem;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 .word-row span {
   min-width: 20%;
+  flex: 1 0 auto;
+}
+
+.word-row span:first-child {
+  min-width: 10%;
+  flex: 0 1 auto;
+  padding-right: 10px;
+}
+
+.word-row span:nth-child(2) {
+  max-width: 10%;
+  min-width: 10%;
+  padding-left: 10px;
+}
+
+.word-row span span + span{
+  margin-left: 5px;
+  padding-left: 5px;
+  border-left: 1px solid black;
 }
 
 .word-row + .word-row  {

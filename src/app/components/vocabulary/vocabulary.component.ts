@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { MainService, VocabularyResponse, WordResponse } from 'src/app/service/main.service';
 import { Subscription } from 'rxjs';
 
@@ -53,6 +52,7 @@ export class VocabularyComponent implements OnInit, OnDestroy {
 
     this.getWords$ = this.service.getWords(this.currentPage, sortBy, this.sortOrder)
       .subscribe((res: VocabularyResponse) => {
+        console.log(res.content);
         this.words = res.content;
 
         this.maxPage = res.totalPages;

@@ -14,7 +14,7 @@
   <div class="word-row" *ngFor="let word of words;">
     <span>{{word.word}}</span>
     <span>{{word.frequency}}</span>
-    <!-- <span>Из текста номер {{word.frequency}}</span> -->
+    <span>Был применен в текстах:  <span *ngFor="let mention of word.mentions">{{mention.name}}</span></span>
   </div>
 
   <div class="paging">

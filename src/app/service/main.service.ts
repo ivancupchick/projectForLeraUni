@@ -4,9 +4,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
+export interface Mention {
+  id: number; // text ID
+  data: any; // what is it?
+  name: string; // text Title
+}
+
 export interface WordResponse {
   frequency: number;
   word: string;
+  mentions: Mention[];
 }
 
 export interface TextResponse {

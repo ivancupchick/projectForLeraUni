@@ -80,7 +80,7 @@ export class TextListComponent implements OnInit, OnDestroy {
     }
   }
 
-  fileEvent(fileInput: InputEvent) {
+  fileEvent(fileInput: any) {
     const file = (fileInput.target as any).files[0];
 
     if (!file) {
