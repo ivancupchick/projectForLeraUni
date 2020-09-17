@@ -1,29 +1,15 @@
 <div class="container">
-
-  <div class="search-input">
-    <span>
-      <input [(ngModel)]="searchValue" type="search" placeholder="Search a text"/>
-      <button (click)="searchText()">Search</button>
-    </span>
-  </div>
-
   <div class="text-row text-header">
     <span>Text Title</span>
     <span *ngIf=false>ID</span>
-    <span>
-      <input (change)="fileEvent($event)" [(ngModel)] = "file" type="file" placeholder="Load new text" />
-    </span>
-    <span>
-    </span>
+    <button (click)="getStatistics()">Statistics</button>
   </div>
+
   <div class="text-row" *ngFor="let text of texts;">
     <span>{{text.name}}</span>
     <span *ngIf=false>{{text.id}}</span>
     <button (click)="setData(text)">View</button>
-  </div>
-
-  <div class="loading-modal">
-    <span>Loading...</span>
+    <span></span>
   </div>
 
   <div class="paging">

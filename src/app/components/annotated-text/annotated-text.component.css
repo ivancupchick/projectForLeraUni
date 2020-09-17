@@ -27,28 +27,3 @@
 .text-header {
   border: 3px solid #5c8d89;
 }
-
-.loading-modal {
-  position: fixed;
-  background-color: white;
-  border: 1px solid #5c8d89;
-  padding: 100px 150px;
-  font-style: italic;
-  font-size: 20px;
-  font-weight: lighter;
-  top: 30%;
-  left: calc(50% - 150px);
-  opacity: 0;
-}
-
-.visible {
-  opacity: 1;
-}
-
-.search-input {
-  margin-bottom: 10px;
-}
-
-input {
-  min-width: 460px;
-}

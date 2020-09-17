@@ -9,13 +9,21 @@ import { VocabularyComponent } from './components/vocabulary/vocabulary.componen
 import { FormsModule } from '@angular/forms';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { ViewerService } from './service/viewer.service';
+import {TagDefinitionComponent} from './components/tag-definition/tag-definition.component';
+import {AnnotatedTextComponent} from './components/annotated-text/annotated-text.component';
+import {AnnotatedViewerComponent} from './components/annotated-viewer/annotated-viewer.component';
+import {StatisticsViewerComponent} from './components/statistics-viewer/statistics-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TextListComponent,
     VocabularyComponent,
-    ViewerComponent
+    ViewerComponent,
+    TagDefinitionComponent,
+    AnnotatedTextComponent,
+    AnnotatedViewerComponent,
+    StatisticsViewerComponent
   ],
   imports: [
     BrowserModule,

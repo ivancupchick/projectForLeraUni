@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewerService } from 'src/app/service/viewer.service';
 import { Router } from '@angular/router';
+import {MainService, TextResponse} from '../../service/main.service';
 
 @Component({
   selector: 'app-viewer',
@@ -8,17 +9,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./viewer.component.css']
 })
 export class ViewerComponent implements OnInit {
-  public textContent: string;
+  public text: TextResponse;
 
-  constructor(private viewerService: ViewerService, private router: Router) { }
+  constructor(private viewerService: ViewerService,
+              private mainService: MainService,
+              private router: Router) { }
 
   ngOnInit() {
-    const content = this.viewerService.getTextContent();
-
-    if (!content) {
+    const textContent = this.viewerService.getTextContent();
+    if (!textContent || !textContent.data) {
       this.router.navigateByUrl('text-list');
+      return;
     }
 
-    this.textContent = this.viewerService.getTextContent();
+    const content = textContent.data;
+    this.text = this.viewerService.getTextContent();
+  }
+
+  editText() {
+    this.mainService.saveText(this.text).subscribe((res) => {
+      this.router.navigateByUrl('text-list');
+    });
+  }
+
+  cancelEdit() {
+    this.router.navigateByUrl('text-list');
   }
 }

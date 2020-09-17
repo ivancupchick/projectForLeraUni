@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MainService, GetTextsResponse } from 'src/app/service/main.service';
+import {MainService, GetTextsResponse, TextResponse, VocabularyResponse} from 'src/app/service/main.service';
 import { ViewerService } from 'src/app/service/viewer.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class TextListComponent implements OnInit, OnDestroy {
   public texts: any[];
+  searchValue: string;
 
   sortOrder = true;
 
@@ -67,7 +68,7 @@ export class TextListComponent implements OnInit, OnDestroy {
       this.currentPage += 1;
       this.setTexts();
     } else {
-      alert('Это последняя страница');
+      alert('This is the last page');
     }
   }
 
@@ -76,7 +77,7 @@ export class TextListComponent implements OnInit, OnDestroy {
       this.currentPage -= 1;
       this.setTexts();
     } else {
-      alert('Это первая страница');
+      alert('This is the first page');
     }
   }
 
@@ -92,28 +93,37 @@ export class TextListComponent implements OnInit, OnDestroy {
 
     if (extensions !== '.txt') {
       this.file = null;
-      alert('Поле принимает только файлы с расширением .txt ');
+      alert('File extension should be .txt ');
       return;
     }
 
     this.uploadFile$ = this.service.uploadFile(file)
       .subscribe(res => {
-        alert('Файл успешно загружен!');
+        document.getElementsByClassName('loading-modal')[0].classList.remove('visible');
         this.setTexts();
-
         this.file = null;
       }, (error) => {
-        alert('Что-то пошло не так...');
+        document.getElementsByClassName('loading-modal')[0].classList.remove('visible');
+        alert('Something went wrong...');
         console.log(error);
-
         this.file = null;
       });
   }
 
-  setData(content: string) {
-    this.viewerService.setTextContent(content);
+  setData(text: TextResponse) {
+    this.viewerService.setText(text);
+    this.router.navigateByUrl('annotated-viewer');
+  }
 
-    this.router.navigateByUrl('viewer');
-    // "../viewer"
+  searchText() {
+    if (!this.searchValue) {
+      this.setTexts();
+      return;
+    }
+    this.service.searchText(this.searchValue)
+      .subscribe((res: GetTextsResponse) => {
+        this.texts = res.content;
+        this.maxPage = res.totalPages;
+      });
   }
 }

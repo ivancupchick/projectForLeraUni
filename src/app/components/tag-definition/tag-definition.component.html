@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="table-container">
+    <div class="flex-table">
+      <table>
+      <thead>
+      <tr>
+        <th>Tag</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-row" *ngFor="let tag of tagsFirst;">
+        <td>{{tag.tag}}</td>
+        <td>{{tag.description}}</td>
+        <td>{{tag.example}}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="flex-table">
+      <table>
+      <thead>
+      <tr>
+        <th>Tag</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-row" *ngFor="let tag of tagsSecond;">
+        <td>{{tag.tag}}</td>
+        <td>{{tag.description}}</td>
+        <td>{{tag.example}}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

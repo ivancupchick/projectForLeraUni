@@ -1,8 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MainService, VocabularyResponse, WordResponse } from 'src/app/service/main.service';
+import {
+  GetTextsResponse,
+  MainService,
+  TextResponse,
+  VocabularyResponse,
+  WordCanonicalResponse,
+  WordResponse
+} from 'src/app/service/main.service';
 import { Subscription } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-vocabulary',
@@ -19,6 +24,7 @@ export class VocabularyComponent implements OnInit, OnDestroy {
   displayPage = 1;
 
   maxPage = 10;
+  texts: TextResponse[];
 
   searchValue: string;
 
@@ -28,6 +34,10 @@ export class VocabularyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.setWords();
+    this.service.getTexts(this.currentPage)
+      .subscribe((res: GetTextsResponse) => {
+        this.texts = res.content;
+      });
   }
 
   ngOnDestroy() {
@@ -54,6 +64,10 @@ export class VocabularyComponent implements OnInit, OnDestroy {
       .subscribe((res: VocabularyResponse) => {
         console.log(res.content);
         this.words = res.content;
+        this.words.forEach(word => {
+          word.editedValue = word.word;
+          word.editTag = word.tag;
+        });
 
         this.maxPage = res.totalPages;
       });
@@ -64,7 +78,7 @@ export class VocabularyComponent implements OnInit, OnDestroy {
       this.currentPage += 1;
       this.setWords();
     } else {
-      alert('Это последняя страница');
+      alert('This is the last page');
     }
   }
 
@@ -73,7 +87,7 @@ export class VocabularyComponent implements OnInit, OnDestroy {
       this.currentPage -= 1;
       this.setWords();
     } else {
-      alert('Это первая страница');
+      alert('This is the first page');
     }
   }
 
@@ -82,6 +96,49 @@ export class VocabularyComponent implements OnInit, OnDestroy {
       .subscribe((res: VocabularyResponse) => {
         this.words = res.content;
 
+        this.maxPage = res.totalPages;
+      });
+  }
+
+  editWord(word) {
+    this.service.editWord(word.word, word.editedValue, word.mentions)
+      .subscribe((res: VocabularyResponse) => {
+        alert('Word has been changed successfully!');
+        word.editedValue = null;
+        window.location.reload();
+      });
+  }
+
+  editTag(word) {
+    this.service.editTag(word.word, word.editTag)
+      .subscribe((res: VocabularyResponse) => {
+        alert('Tag has been changed successfully!');
+        window.location.reload();
+      });
+  }
+
+  getCanonical(word) {
+    if (word.wordCanonical) {
+      word.wordCanonical = null;
+      return;
+    }
+    this.service.getCanonical(word.word)
+      .subscribe((res: WordCanonicalResponse) => {
+        word.wordCanonical = res;
+        // alert('canonical from: ' + res.canonical + '\n'
+        //   + 'tags: ' + res.tags + '\n'
+        //   + 'frequency: ' + res.frequency + '\n');
+      });
+  }
+
+  getTextVocabulary(textId) {
+    this.service.getTextVocabulary(textId, this.currentPage, 'word', this.sortOrder)
+      .subscribe((res: VocabularyResponse) => {
+        this.words = res.content;
+        this.words.forEach(word => {
+          word.editedValue = word.word;
+          word.editTag = word.tag;
+        });
         this.maxPage = res.totalPages;
       });
   }

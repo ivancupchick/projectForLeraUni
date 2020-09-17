@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  origin: 'https://valerija-nlp.herokuapp.com'
+  // origin: 'https://valerija-nlp.herokuapp.com'
+  origin: 'http://localhost:8080'
 };
 
 /*
